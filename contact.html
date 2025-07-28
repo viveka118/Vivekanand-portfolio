@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Header</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --text-color: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: 0.3s ease;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0f172a, #1e3a8a);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      flex: 1;
+      color: white;
+    }
+
+    .menu-toggle {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+      display: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #22d3ee;
+    }
+
+    .right-tools {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Mobile View */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo {
+        order: -1;
+        margin-bottom: 10px;
+      }
+
+      .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 18px;
+        left: 20px;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: left;
+        padding-left: 20px;
+        margin-top: 10px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .right-tools {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Header Start -->
+  <header>
+    <div class="header-container">
+      
+      <!-- ☰ Hamburger -->
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+      <!-- 🖼 Center Logo -->
+      <div class="logo">Vivekanand Portfolio</div>
+
+      <!-- 🌙 🔍 Right Side Icons -->
+      <div class="right-tools">
+        <span onclick="toggleMode()" id="modeBtn">🌙</span>
+        <span>🔍</span>
+      </div>
+
+      <!-- 🔗 Menu Links -->
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="certificate.html">Certificates</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+
+    </div>
+  </header>
+  <!-- ✅ Header End -->
+  <!-- ✅ JavaScript -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+
+    function toggleMode() {
+      const root = document.documentElement;
+      const btn = document.getElementById("modeBtn");
+      const current = getComputedStyle(root).getPropertyValue('--bg-color').trim();
+
+      if (current === '#0f172a') {
+        root.style.setProperty('--bg-color', '#ffffff');
+        root.style.setProperty('--text-color', '#111111');
+        btn.textContent = '🌞';
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#111111';
+      } else {
+        root.style.setProperty('--bg-color', '#0f172a');
+        root.style.setProperty('--text-color', '#ffffff');
+        btn.textContent = '🌙';
+        document.body.style.backgroundColor = '#0f172a';
+        document.body.style.color = '#ffffff';
+      }
+    }
+  </script>
+
+<style>
+  .footer {
+    background-color: #0d1117;
+    color: white;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+  }
+
+  .footer-section h3 {
+    margin-bottom: 15px;
+  }
+
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .footer-section a {
+    color: #aaa;
+    text-decoration: none;
+  }
+
+  .footer-section p {
+    color: #aaa;
+    line-height: 1.6;
+  }
+
+  .social-icons img {
+    width: 30px;
+    margin-right: 10px;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-section {
+      text-align: center;
+    }
+
+    .social-icons {
+      justify-content: center;
+    }
+  }
+</style>
+
+
+<section style="background: #f7f9fc; padding: 60px 20px;">
+  <div style="max-width: 800px; margin: auto; background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);">
+
+    <h2 style="text-align: center; font-size: 34px; background: linear-gradient(45deg, #ff6f00, #ffa726); -webkit-background-clip: text; color: transparent; margin-bottom: 30px;">
+      📬 संपर्क करें
+    </h2>
+
+    <form action="https://script.google.com/macros/s/AKfycbxlfmfmdlBbzaLYbZ-_SgW9-WcbN8oTjFWbL0bRFYb5SGYUcQTRy_tpDhmJKJNUnvQT/exec" method="POST">
+
+      <div style="margin-bottom: 20px;">
+        <label style="font-weight: bold;">पूरा नाम</label><br>
+        <input type="text" name="name" placeholder="अपना नाम लिखें" required style="width: 100%; padding: 12px 15px; margin-top: 6px; border: 1px solid #ccc; border-radius: 8px;">
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="font-weight: bold;">ईमेल</label><br>
+        <input type="email" name="email" placeholder="example@email.com" required style="width: 100%; padding: 12px 15px; margin-top: 6px; border: 1px solid #ccc; border-radius: 8px;">
+      </div>
+
+      <div style="margin-bottom: 25px;">
+        <label style="font-weight: bold;">आपका संदेश</label><br>
+        <textarea name="message" rows="5" placeholder="आप क्या कहना चाहते हैं?" required style="width: 100%; padding: 12px 15px; margin-top: 6px; border: 1px solid #ccc; border-radius: 8px;"></textarea>
+      </div>
+
+      <button type="submit" style="
+        background: linear-gradient(to right, #fb8c00, #f57c00);
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+      ">
+        भेजें
+      </button>
+
+    </form>
+  </div>
+  <br><br>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Footer</title>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    footer {
+      background-color: #051438;
+      color: rgb(250, 245, 245);
+      padding: 50px 20px 30px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-col {
+      flex: 1 1 250px;
+      margin: 20px;
+    }
+
+    .footer-col h4 {
+      font-size: 22px;
+      color: #facc15;
+      margin-bottom: 20px;
+    }
+
+    .footer-col p,
+    .footer-col ul li {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #cbd5e1;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: #facc15;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 17px;
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      font-size: 22px;
+      color: #cbd5e1;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #facc15;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 14px;
+      color: #94a3b8;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #334155;
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-col {
+        margin: 20px 0;
+      }
+
+      .social-icons {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>About Our Institute</h4>
+        <p>
+          We are committed to empowering students with the best education and tools for success. 
+          From school coaching to career guidance, we aim to build a better future through learning.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">🏠 Home</a></li>
+          <li><a href="about.html">🎓 About</a></li>
+          <li><a href="certificate.html">📝 Certificate</a></li>
+          <li><a href="gallery.html">🖼 Gallery</a></li>
+           <li><a href="#">📞 Contact</a></li>
+           <li><a href="resume.html">🎞 Resume</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> vivekanand00440@gmail.com</li>
+          <li><i class="fas fa-phone"></i> +91 8303606978</li>
+          <li><i class="fas fa-map-marker-alt"></i> Bhanauri belsara Kaundhiyara</li>
+          <li><i class="fas fa-map-marker-alt"></i>Prayagraj Utter Pradesh 212306 </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://instagram.com/vivekanand_roy_184" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/918303606978" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://facebook.com/your_username" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://linkedin.com/in/your_username" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      I am Viveka Namd From Bhanauri Belsara Prayagraj
+    </div>
+  </footer>
+
+</body>
+</html>
